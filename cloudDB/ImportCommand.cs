@@ -9,9 +9,7 @@ using Autodesk.Revit.Attributes;
 
 namespace cloudDB
 {
-    /// <summary>
     /// Implements the Revit add-in interface IExternalCommand
-    /// </summary>
     [Transaction(TransactionMode.Manual)]
     public class ImportCommand : IExternalCommand
     {

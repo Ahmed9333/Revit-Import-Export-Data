@@ -1,0 +1,22 @@
+﻿<Window x:Class="cloudDB.MainWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:cloudDB"
+             xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+             mc:Ignorable="d" Height="821" Width="1099" ResizeMode="NoResize" SizeToContent="Height" Title="Mini Active View Manager">
+    <Border Padding="15" Height="801" VerticalAlignment="Top" Margin="0,10,0,0">
+        <StackPanel Margin="-5,-15,-5,-5">
+            <Label x:Name="label_Name" Margin="10 0" />
+            <Label Content="Test For Revit Integration" Foreground="#FF36538C" FontSize="30" Width="548" RenderTransformOrigin="0.504,0.493" Height="67" Background="#FFECC9C9" BorderBrush="#FF2023EF" IsEnabled="False" FontWeight="Bold" FontFamily="Segoe UI Black" />
+            <Grid
+            Grid.Row="1" Height="709">
+                <wpf:ChromiumWebBrowser
+                Address="https://www.google.com" >
+                </wpf:ChromiumWebBrowser>
+            </Grid>
+        </StackPanel>
+    </Border>
+
+</Window>

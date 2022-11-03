@@ -33,19 +33,19 @@ namespace cloudDB
             // Creat button to show Navigator Window
             RibbonPanel panel2 = RibbonPanel(application);
             string thisAssemblyPath2 = Assembly.GetExecutingAssembly().Location;
-            if (panel2.AddItem(new PushButtonData("Navigator", "Navigator", thisAssemblyPath2, "cloudDB.AddNavigatorWindow"))
+            if (panel2.AddItem(new PushButtonData("Chrome Web Browser", "Chrome Web Browser", thisAssemblyPath2, "cloudDB.ActiveViewManager"))
                 is PushButton button2 )
             {
-                button2.ToolTip = "Naviigator window";
+                button2.ToolTip = "Chrome Web Browser";
                 Uri uri = new Uri(@"C:\Users\ahmed\source\repos\Revit-Import-Export-Data\cloudDB\Resources\navigator.ico");
                 BitmapImage bitmapImage = new BitmapImage(uri);
                 button2.LargeImage = bitmapImage;
             }
 
-            // Creat split button ImportData and ExportData: Fire Alram Device
+            // Creat button Retrieve Selected Items
             RibbonPanel panel3 = RibbonPanel(application);
             string thisAssemblyPath3 = Assembly.GetExecutingAssembly().Location;
-            if (panel2.AddItem(new PushButtonData("Fire Alram Device Export", "Fire Alram Device Export", thisAssemblyPath2, "cloudDB.TestHello"))
+            if (panel3.AddItem(new PushButtonData("Retrieve Selected Items", "Retrieve Selected Items", thisAssemblyPath3, "cloudDB.SelectElements"))
                 is PushButton button3)
             {
                 button3.ToolTip = "Show Data to Export";
@@ -86,43 +86,14 @@ namespace cloudDB
 
         }
 
-        /// Adds split button group with two push buttons: one to export FireAlarmDevices data and the other to import FireAlarmDevices data 
-        private void AddSplitButtonGroupFireAlarmDevices(RibbonPanel panel)
-        {
-            string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
-
-            SplitButtonData sbData = new SplitButtonData("SplitGroup", "SplitGroup");
-            SplitButton splitButton = panel.AddItem(sbData) as SplitButton;
-
-            PushButtonData exportData = new PushButtonData("ExportFireAlarmDevicesData", "ExportFireAlarmDevicesData", thisAssemblyPath, "cloudDB.ExportCommandFireAlarmDevices");
-            PushButton exportButton = splitButton.AddPushButton(exportData);
-            exportButton.ToolTip = "Export Revit FireAlarmDevices Data";
-
-            Uri exportUri = new Uri(Path.Combine(Path.GetDirectoryName(thisAssemblyPath), "Resources", "mongoExp.ico"));
-            BitmapImage expBitmapImage = new BitmapImage(exportUri);
-            exportButton.LargeImage = expBitmapImage;
-
-            splitButton.AddSeparator();
-
-            PushButtonData importData = new PushButtonData("ImportFireAlarmDevicesData", "ImportFireAlarmDevicesData", thisAssemblyPath, "cloudDB.ImportCommandFireAlarmDevices");
-            PushButton importButton = splitButton.AddPushButton(importData);
-            importButton.ToolTip = "Import Revit FireAlarmDevices Data";
-
-            Uri importUri = new Uri(Path.Combine(Path.GetDirectoryName(thisAssemblyPath), "Resources", "mongoImp.ico"));
-            BitmapImage impBitmapImage = new BitmapImage(importUri);
-            importButton.LargeImage = impBitmapImage;
-
-        }
-
-        /// Function creates "Export/Import Data" tab and "Export and Import Data" ribbon panel
+        /// Function creates "Export/Import Data" tab and "Export & Import Data" ribbon panel
 
         public RibbonPanel RibbonPanel(UIControlledApplication a)
         {
             // Tab name
-            string tab = "Export/Import Data 2";
+            string tab = "DEF4Revit";
             // Empty ribbon panel 
             RibbonPanel RibbonPanel = null;
-
 
             //Create ribbon Tab
             try
@@ -134,11 +105,10 @@ namespace cloudDB
                 TaskDialog.Show(ex.Message, ex.ToString());
             }
 
-
             //Create ribbon panel
             try
             {
-                RibbonPanel panel = a.CreateRibbonPanel(tab, "Export and Import Data");
+                RibbonPanel panel = a.CreateRibbonPanel(tab, "Export & Import Data");
             }
             catch (Exception ex)
             {
@@ -149,7 +119,7 @@ namespace cloudDB
 
             // Search existing tab for your panel.
             List<RibbonPanel> panels = a.GetRibbonPanels(tab);
-            foreach (RibbonPanel p in panels.Where(p => p.Name == "Export and Import Data"))
+            foreach (RibbonPanel p in panels.Where(p => p.Name == "Export & Import Data"))
             {
                 RibbonPanel = p;
             }
